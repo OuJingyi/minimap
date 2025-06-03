@@ -13,7 +13,7 @@ const Index = () => {
 
       {/* 右下角浮窗 */}
       {isFloatingWindowVisible && (
-        <div className="fixed bottom-24 right-4 bg-white rounded-lg shadow-lg p-4 w-64">
+        <div className="fixed bottom-6 right-6 bg-white rounded-lg shadow-lg p-4 w-[180px] h-[180px]">
           <div className="flex justify-between items-center mb-2">
             <h4 className="font-semibold">浮窗标题</h4>
           </div>
