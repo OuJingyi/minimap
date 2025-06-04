@@ -56,14 +56,13 @@ const Index = () => {
         mapStyle: "amap://styles/whitesmoke",
       });
 
-      // 添加比例尺控件
-      const scale = new window.AMap.Scale({
+      // 添加比例尺控件 - 使用新的控件方式
+      map.addControl(new window.AMap.Control({
         position: {
           bottom: '20px',
           left: '20px'
         }
-      });
-      map.addControl(scale);
+      }));
 
       map.on('complete', () => {
         mapInstanceRef.current = map;
