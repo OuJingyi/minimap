@@ -3,7 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # 或者 master，取决于您的默认分支名称
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -16,15 +19,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build
         run: npm run build
+        env:
+          NODE_ENV: production
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist  # 构建输出目录
-          branch: gh-pages  # 部署分支 
+          folder: dist
+          branch: gh-pages
+          clean: true
+          commit-message: "Deploy: ${{ github.event.head_commit.message }}" 
