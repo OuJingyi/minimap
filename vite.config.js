@@ -141,7 +141,7 @@ export default defineConfig({
     }
   },
   plugins: [react()],
-  base: '/nocode-287b15f88dcc4d83/', // 替换为您的仓库名称
+  base: '/minimap/', // 更新为新的仓库名
   build: {
     outDir: 'dist'
   },
