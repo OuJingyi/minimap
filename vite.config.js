@@ -140,12 +140,10 @@ export default defineConfig({
       overlay: false
     }
   },
-  plugins: [
-    PLUGINS
-  ],
-  base: PUBLIC_PATH,
+  plugins: [react()],
+  base: '/nocode-287b15f88dcc4d83/', // 替换为您的仓库名称
   build: {
-    outDir: OUT_DIR
+    outDir: 'dist'
   },
   resolve: {
     alias: [
