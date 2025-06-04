@@ -156,7 +156,13 @@ export default defineConfig({
         manualChunks: undefined
       },
     },
-    sourcemap: true
+    sourcemap: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
