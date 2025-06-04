@@ -56,6 +56,15 @@ const Index = () => {
         mapStyle: "amap://styles/whitesmoke",
       });
 
+      // 添加比例尺控件
+      const scale = new window.AMap.Scale({
+        position: {
+          bottom: '20px',
+          left: '20px'
+        }
+      });
+      map.addControl(scale);
+
       map.on('complete', () => {
         mapInstanceRef.current = map;
         setMapReady(true);
