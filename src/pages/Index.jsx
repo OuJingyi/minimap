@@ -63,22 +63,31 @@ const Index = () => {
         loadGeoJSONData();
       });
 
-      // 添加缩放控件
-      map.plugin(['AMap.ToolBar'], function() {
-        const toolBar = new window.AMap.ToolBar({
-          position: {
-            top: '20px',
-            right: '20px'
-          }
-        });
-        map.addControl(toolBar);
-      });
+      return () => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.destroy();
+        }
+      };
     }
   }, []);
 
   const handleReset = () => {
     if (mapInstanceRef.current) {
       mapInstanceRef.current.setZoomAndCenter(11, [116.397428, 39.90923]);
+    }
+  };
+
+  const handleZoomIn = () => {
+    if (mapInstanceRef.current) {
+      const zoom = mapInstanceRef.current.getZoom();
+      mapInstanceRef.current.setZoom(zoom + 1);
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (mapInstanceRef.current) {
+      const zoom = mapInstanceRef.current.getZoom();
+      mapInstanceRef.current.setZoom(zoom - 1);
     }
   };
 
@@ -89,10 +98,25 @@ const Index = () => {
         ref={mapRef}
         style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 1 }}
       />
+      {/* 自定义工具栏 */}
+      <div className="fixed top-[20px] right-[20px] bg-white rounded-md shadow-md flex flex-col z-10">
+        <button
+          onClick={handleZoomIn}
+          className="w-[32px] h-[32px] flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 border-b border-gray-100"
+        >
+          <img src="/加号_新建_小 (1).svg" width="20" height="20" alt="放大" />
+        </button>
+        <button
+          onClick={handleZoomOut}
+          className="w-[32px] h-[32px] flex items-center justify-center hover:bg-gray-50 active:bg-gray-100"
+        >
+          <img src="/减号_减少_小 (2).svg" width="20" height="20" alt="缩小" />
+        </button>
+      </div>
       {/* 复位按钮 */}
       <button
         onClick={handleReset}
-        className="fixed top-[88px] right-[20px] bg-white rounded-md shadow-md w-[32px] h-[32px] flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 z-10"
+        className="fixed top-[100px] right-[20px] bg-white rounded-md shadow-md w-[32px] h-[32px] flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 z-10"
       >
         <svg 
           width="20" 

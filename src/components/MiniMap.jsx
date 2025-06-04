@@ -67,6 +67,10 @@ const MiniMap = ({ mainMap, points }) => {
         // 监听小地图的点击事件
         miniMap.on('click', (e) => {
           mainMap.setCenter(e.lnglat);
+          // 更新光标位置
+          if (markerRef.current) {
+            markerRef.current.setPosition(e.lnglat);
+          }
         });
 
         return () => {
