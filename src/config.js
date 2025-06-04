@@ -1,0 +1,1 @@
+export const AMAP_KEY = 'ef983f49fffa8fc235dadf431fc31665'; 
