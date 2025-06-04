@@ -153,8 +153,10 @@ export default defineConfig({
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash][extname]',
+        manualChunks: undefined
       },
     },
+    sourcemap: true
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
