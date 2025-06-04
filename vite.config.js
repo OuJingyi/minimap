@@ -141,9 +141,17 @@ export default defineConfig({
     }
   },
   plugins: [react()],
-  base: '/minimap/', // 更新为新的仓库名
+  base: './', // 修改为相对路径
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[hash][extname]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js',
+      },
+    },
   },
   resolve: {
     alias: [
